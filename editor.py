@@ -1,16 +1,21 @@
 import kivy
 
 from kivy.app import App
-from kivy.uix.button import Label
-from kivy.uix.widget import Widget
+from kivy.uix.textinput import TextInput
 
 kivy.require('1.9.0')
 
 
-class Editor(Widget):
+class Editor(App):
+    def __init__(self, text, **kwargs):
+        super().__init__(**kwargs)
+        self.text = text
+
     def build(self):
-        return Label(text="Let's code !")
+        code_input = TextInput(text=self.text)
+        code_input.font_name = "code.ttf"
+        return code_input
 
 
-editor = Editor()
+editor = Editor(text="Let's code !")
 editor.run()
