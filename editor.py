@@ -10,12 +10,13 @@ kivy.require('1.9.0')
 
 
 class Editor(App):
-    def __init__(self, text, **kwargs):
+    def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
         self.save_button = Button(text="Sauvegarder", size_hint=(1, .1))
         self.save_button.bind(on_press=self.save)
 
+        text = self.load()
         self.code_input = TextInput(text=text, size_hint=(1, .9))
         self.code_input.font_name = "code.ttf"
 
@@ -33,6 +34,14 @@ class Editor(App):
         conn.commit()
         conn.close()
 
+    def load(self):
+        conn = sqlite3.connect('Data/kivy.db')
+        c = conn.cursor()
+        c.execute('select code from IA')
+        result = c.fetchone()
+        conn.close()
+        return result[0]
 
-editor = Editor(text="Let's code !")
+
+editor = Editor()
 editor.run()
