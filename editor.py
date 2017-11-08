@@ -32,19 +32,19 @@ class Editor(App):
     def save(self, value=""):
         conn = sqlite3.connect('Data/kivy.db')
         c = conn.cursor()
-        aze = (self.code_input.text, self.id) # todo change db
-        c.execute('update IA set code=? where id=?', aze)
+        c.execute('UPDATE IA SET code=? WHERE id=?', (self.code_input.text, self.id))
         conn.commit()
         conn.close()
 
     def load(self):
         conn = sqlite3.connect('Data/kivy.db')
         c = conn.cursor()
-        c.execute('select code from IA where id=?', (self.id,))
+        c.execute('SELECT code FROM IA WHERE id=?', (self.id,))
         result = c.fetchone()
         conn.close()
         return result[0]
 
 
-editor = Editor(1)
-editor.run()
+if __name__ == '__main__':
+    editor = Editor(1)
+    editor.run()
