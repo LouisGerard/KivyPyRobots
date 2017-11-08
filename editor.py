@@ -2,7 +2,7 @@ import kivy
 import sqlite3
 
 from kivy.app import App
-from kivy.uix.textinput import TextInput
+from kivy.uix.codeinput import CodeInput
 from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
 
@@ -17,7 +17,7 @@ class Editor(App):
         self.save_button.bind(on_press=self.save)
 
         text = self.load()
-        self.code_input = TextInput(text=text, size_hint=(1, .9))
+        self.code_input = CodeInput(text=text, size_hint=(1, .9))
         self.code_input.font_name = "code.ttf"
 
     def build(self):
