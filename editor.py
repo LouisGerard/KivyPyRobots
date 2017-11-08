@@ -20,6 +20,7 @@ class Editor(App):
 
         text = self.load()
         self.code_input = CodeInput(text=text, size_hint=(1, .9))
+        self.code_input.on_double_tap = self.save
         self.code_input.font_name = "code.ttf"
 
     def build(self):
@@ -28,7 +29,7 @@ class Editor(App):
         layout.add_widget(self.code_input)
         return layout
 
-    def save(self, value):
+    def save(self, value=""):
         conn = sqlite3.connect('Data/kivy.db')
         c = conn.cursor()
         aze = (self.code_input.text, self.id) # todo change db
