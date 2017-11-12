@@ -58,15 +58,17 @@ class Editor(App):
         text = str(self.code_input.text)
         last_line = text[text.rfind('\n', 0, len(text) - end_offset) + 1:]
         i = 0
+        level = 0
         while i < len(last_line):
             if last_line[i] == ' ':
-                i += 1
+                level += 1
             elif last_line[i] == '\t':
-                i += 4
+                level += 4
             else:
                 break
+            i += 1
 
-        indent = ' ' * i
+        indent = ' ' * level
         return indent
 
 
