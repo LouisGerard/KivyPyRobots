@@ -2,6 +2,7 @@ import kivy
 import sqlite3
 
 from kivy.app import App
+from kivy.core.window import WindowBase
 from kivy.uix.codeinput import CodeInput
 from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
@@ -20,8 +21,8 @@ class Editor(App):
 
         text = self.load()
         self.code_input = CodeInput(text=text, size_hint=(1, .9))
-        self.code_input.on_double_tap = self.save
         self.code_input.font_name = "code.ttf"
+        WindowBase.on_key_up = self.autoindent
 
     def build(self):
         layout = BoxLayout(orientation='vertical')
@@ -43,6 +44,22 @@ class Editor(App):
         result = c.fetchone()
         conn.close()
         return result[0]
+
+    def autoindent(self, key, scancode=None, codepoint=None, modifier=None):
+        if key == 58:   # :
+            text = str(self.code_input.text)
+            last_line = text[text.rfind('\n')+1:]
+            i = 0
+            while i < len(last_line):
+                if last_line[i] == ' ':
+                    i += 1
+                elif last_line[i] == '\t':
+                    i += 4
+                else:
+                    break
+
+            indent = ' ' * (i+4)
+            self.code_input.insert_text('\n' + indent)   # todo indent
 
 
 if __name__ == '__main__':
