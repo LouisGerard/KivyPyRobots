@@ -46,20 +46,28 @@ class Editor(App):
         return result[0]
 
     def autoindent(self, key, scancode=None, codepoint=None, modifier=None):
-        if key == 58 and self.code_input.focused:   # :
-            text = str(self.code_input.text)
-            last_line = text[text.rfind('\n')+1:]
-            i = 0
-            while i < len(last_line):
-                if last_line[i] == ' ':
-                    i += 1
-                elif last_line[i] == '\t':
-                    i += 4
-                else:
-                    break
+        if self.code_input.focused:
+            if key == 58:   # :
+                indent = self.get_indent() + (' ' * 4)
+                self.code_input.insert_text('\n' + indent)
+            elif key == 13:
+                indent = self.get_indent(1)
+                self.code_input.insert_text(indent)
 
-            indent = ' ' * (i+4)
-            self.code_input.insert_text('\n' + indent)   # todo indent
+    def get_indent(self, end_offset=0):
+        text = str(self.code_input.text)
+        last_line = text[text.rfind('\n', 0, len(text) - end_offset) + 1:]
+        i = 0
+        while i < len(last_line):
+            if last_line[i] == ' ':
+                i += 1
+            elif last_line[i] == '\t':
+                i += 4
+            else:
+                break
+
+        indent = ' ' * i
+        return indent
 
 
 if __name__ == '__main__':
