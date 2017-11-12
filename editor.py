@@ -46,7 +46,7 @@ class Editor(App):
         return result[0]
 
     def autoindent(self, key, scancode=None, codepoint=None, modifier=None):
-        if key == 58:   # :
+        if key == 58 and self.code_input.focused:   # :
             text = str(self.code_input.text)
             last_line = text[text.rfind('\n')+1:]
             i = 0
