@@ -8,16 +8,16 @@ from kivy.uix.floatlayout import FloatLayout
 from kivymd.theming import ThemeManager
 
 
-class RootWidget(FloatLayout):
+class Menu(FloatLayout):
     pass
 
 presentation = Builder.load_file("kivy.kv")
 
 if __name__ == '__main__':
-    class TestApp(App):
+    class MenuApp(App):
         theme_cls = ThemeManager()
 
         def build(self):
             self.theme_cls.theme_style = 'Dark'
-            return RootWidget()
-    TestApp().run()
+            return Menu()
+    MenuApp().run()
