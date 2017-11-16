@@ -1,0 +1,132 @@
+#:kivy 1.9.1
+
+#:import NoTransition kivy.uix.screenmanager.NoTransition
+#:import Toolbar kivymd.toolbar.Toolbar
+#:import NavigationDrawer kivymd.navigationdrawer.NavigationDrawer
+#:import FadeTransition kivy.uix.screenmanager.FadeTransition
+
+
+<RootWidget>:
+    NavigationDrawer:
+        id: navigation
+        title: "Navigation"
+
+        NavigationDrawerIconButton:
+            icon: 'home'
+            text: "Acceuil"
+            on_release: screen_manager.current = 'Acceuil'
+
+        NavigationDrawerIconButton:
+            icon: 'gamepad'
+            text: "Combat"
+            on_release: screen_manager.current = 'Combat'
+
+        NavigationDrawerIconButton:
+            icon: 'comment-edit'
+            text: "Editeur"
+            on_release: screen_manager.current = 'Aide'
+
+        NavigationDrawerIconButton:
+            icon: 'shopping-cart'
+            text: "Boutique"
+            on_release: screen_manager.current = ''
+
+        NavigationDrawerIconButton:
+            icon: 'help'
+            text: "Aide"
+            on_release: screen_manager.current = ''
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        Toolbar:
+            title: screen_manager.current
+            background_color: app.theme_cls.primary_color
+            left_action_items: [['menu', lambda x: navigation.toggle()]]
+            right_action_items: [['more-vert', lambda x: app.raised_button.open(self.parent)]]
+
+
+        ScreenManager:
+            id: screen_manager
+            transition: FadeTransition()
+
+            Screen:
+                name: 'Acceuil'
+                color:[0, 1, 0, 1]
+
+                BoxLayout:
+			        padding: sp(40)
+			        GridLayout:
+			            cols: 2
+			            spacing: sp(20)
+
+			            Button:
+			                id: stopButton_id
+				            text: "Stop"
+				            font_size: sp(54)
+
+				        Button:
+			                id: starrButton_id
+				            text: "Start"
+				            font_size: sp(54)
+
+            Screen:
+                name: 'Combat'
+                Button:
+                    on_release: app.root.current = 'other'
+                    text: 'Another Screen'
+                    font_size: 50
+
+                Button:
+                    id: quiter
+				    text: "quiter"
+				    font_size: sp(54)
+				    on_press: root.stop()
+
+            Screen:
+                TabbedPanel:
+                    id: tab_panel
+                    do_default_tab: False
+
+                    TabbedPanelItem:
+                        id: tab_1
+                        text: 'Tab 1'
+                        BoxLayout:
+                            Button:
+                                on_press:   root.btn_new_on_press()
+                                text: 'New Tab'
+                            Button:
+                                on_press:  root.btn_close_on_press()
+                	            text: 'Close tab'
+
+
+            Screen:
+                name: 'Aide'
+
+                BoxLayout:
+			        padding: sp(40)
+			        GridLayout:
+			            cols: 2
+			            spacing: sp(20)
+
+			            Button:
+			                id: stopButton_id
+				            text: "Stop"
+				            font_size: sp(54)
+
+				        Button:
+			                id: starrButton_id
+				            text: "Start"
+				            font_size: sp(54)
+
+				        Button:
+			                id: quiter
+				            text: "quiter"
+				            font_size: sp(54)
+				            on_press: root.stop()
+
+				        Button:
+			                id: lancer
+				            text: "Lancer"
+				            font_size: sp(54)
+				            on_press: root.stop()

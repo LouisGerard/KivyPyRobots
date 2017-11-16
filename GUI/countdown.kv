@@ -1,0 +1,70 @@
+<Countdown>:
+	timer_seconds: timer_seconds_id
+	timer_minutes: timer_minutes_id
+	startButton: startButton_id
+	stopButton: stopButton_id
+	
+	BoxLayout:
+		orientation: 'vertical'
+		spacing: sp(20)
+		padding: sp(20) , sp(20)
+		
+		Label:
+			text: "Simple Countdown"
+			font_size: sp(32)
+			height: sp(50)
+	
+		GridLayout:
+			canvas.before:
+				Color:
+					rgba: 1,0,0, 0.25
+				Rectangle:
+					pos: self.pos
+					size: self.size
+			cols: 2
+			spacing: sp(20)
+			
+			Label:
+				id: timer_minutes_id
+				text: "00"
+				font_size: sp(72)
+			Label:
+				id: timer_seconds_id
+				text: "00"
+				font_size: sp(72)
+				
+			Label:
+				size_hint_y: None
+				height: sp(20)
+				text: "Minutes"
+				font_size: sp(20)
+			Label:
+				size_hint_y: None
+				height: sp(20)
+				text: "Seconds"
+				font_size: sp(20)
+				
+		GridLayout:
+			cols: 2
+			spacing: sp(20)
+			
+			Button:
+				id: startButton_id
+				text: "Start"
+				font_size: sp(54)
+				on_press: root.startup()
+				
+			Button:
+				id: stopButton_id
+				text: "Stop"
+				font_size: sp(54)
+				on_press: root.stop()
+				
+		BoxLayout:
+			padding: sp(40)
+			Button:
+				text: "Back"
+				font_size: sp(20)
+				height: sp(40)
+				on_press: root.goBack()
+			
