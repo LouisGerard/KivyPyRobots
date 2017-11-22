@@ -70,11 +70,13 @@ class Editor(App):
 
     def autoindent(self, key, scancode=None, codepoint=None, modifier=None):
         if self.code_input.focused:
-            if key == 58:   # :
-                indent = self.get_indent() + (' ' * 4)
-                self.code_input.insert_text('\n' + indent)
-            elif key == 13:
+            if key == 13:
                 indent = self.get_indent(1)
+
+                text = str(self.code_input.text)
+                if len(text)-2 >= 0 and text[len(text)-2] == ':':
+                    indent += ' ' * 4
+
                 self.code_input.insert_text(indent)
 
     def get_indent(self, end_offset=0):
