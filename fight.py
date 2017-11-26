@@ -19,19 +19,17 @@ kivy.require('1.9.0')
 Window.fullscreen = False
 
 
-tank1 = Game.Robot(1)
-tank2 = Game.Robot(2)
-game = Game.Game(tank1, tank2)
-
-
 class field(App):
-    def __init__(self, **kwargs):
+    def __init__(self, t1, t2, ia1, ia2, **kwargs):
         super().__init__(**kwargs)
         self.cptTour = 0
 
         self.layout = FloatLayout()
         self.caseWidth = Window.width / 32
         self.caseHeight = Window.height / 32
+        tank1 = Game.Robot(Tank(t1), 0)
+        tank2 = Game.Robot(Tank(t2), 1)
+        self.game = Game.Game(tank1, tank2, IA(ia1), IA(ia2))
 
     def build(self):
         print("build")
@@ -49,8 +47,8 @@ class field(App):
     def update(self):
         print("update")
 
-        posTank1 = game.getPosition(1)
-        posTank2 = game.getPosition(2)
+        posTank1 = self.game.getPosition(1)
+        posTank2 = self.game.getPosition(2)
         field = InstructionGroup()
         i = 0
         while i < 32 * 32:
@@ -65,7 +63,7 @@ class field(App):
                                 size=(self.caseWidth - 1,
                                       self.caseHeight - 1)))
             i += 1
-        game.run(self.cptTour + 1)
+        self.game.run(self.cptTour + 1)
         [self.layout.canvas.add(group) for group in [field]]
         return self.layout
 
