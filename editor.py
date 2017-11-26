@@ -20,11 +20,11 @@ class Editor(App):
 
         self.id = id
 
-        self.save_button = Button(text="Sauvegarder", size_hint=(1, .1))
+        self.save_button = Button(text="Sauvegarder", size_hint=(1, .05))
         self.save_button.bind(on_press=self.save)
 
         text = self.load()
-        self.code_input = CodeInput(text=text, size_hint=(1, .8))
+        self.code_input = CodeInput(text=text, size_hint=(1, .9))
         self.code_input.font_name = "code.ttf"
         WindowBase.on_key_up = self.autoindent
 
@@ -43,7 +43,7 @@ class Editor(App):
             op('for', 'for i in range(0, len(collection))', 12, 10)
         )
 
-        sublayout = BoxLayout(orientation='horizontal', size_hint=(1, .1))
+        sublayout = BoxLayout(orientation='horizontal', size_hint=(1, .05))
 
         for i in range(0, len(ops)):
             b = Suggestion(ops[i])
