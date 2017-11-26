@@ -47,8 +47,8 @@ class field(App):
     def update(self):
         print("update")
 
-        posTank1 = self.game.getPosition(1)
-        posTank2 = self.game.getPosition(2)
+        posTank1 = self.game.getPosition(0)
+        posTank2 = self.game.getPosition(1)
         field = InstructionGroup()
         i = 0
         while i < 32 * 32:

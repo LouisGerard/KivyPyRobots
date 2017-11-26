@@ -109,7 +109,7 @@ class Game(object):
         yp = self.getCellPosY(NumCell)
         x = self.getCellPosX(pos)
         y = self.getCellPosY(pos)
-        cpt = 0;
+        cpt = 0
         while pm > 0 and pos != NumCell:
             if x > xp:
                 # gauche
