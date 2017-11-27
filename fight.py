@@ -22,14 +22,15 @@ Window.fullscreen = False
 class field(App):
     def __init__(self, t1, t2, ia1, ia2, **kwargs):
         super().__init__(**kwargs)
+        print("init")
         self.cptTour = 0
 
         self.layout = FloatLayout()
         self.caseWidth = Window.width / 32
         self.caseHeight = Window.height / 32
-        tank1 = Game.Robot(Tank(t1), 0)
-        tank2 = Game.Robot(Tank(t2), 1)
-        self.game = Game.Game(tank1, tank2, IA(ia1), IA(ia2))
+        #tank1 = Game.Robot(Tank(t1), 0)
+        #tank2 = Game.Robot(Tank(t2), 1)
+        self.game = Game.Game(Tank(t1), Tank(t2), IA(ia1), IA(ia2))
 
     def build(self):
         print("build")
@@ -64,6 +65,7 @@ class field(App):
                                       self.caseHeight - 1)))
             i += 1
         self.game.run(self.cptTour + 1)
+        self.cptTout += 1
         [self.layout.canvas.add(group) for group in [field]]
         return self.layout
 
@@ -80,7 +82,8 @@ class IA:
         result = c.fetchone()
         conn.close()
 
-        self.text = result[0]
+        #self.text = result[0]
+        self.text = "enemy = self.getEnemyTankId()\nenemypos = self.getPosition(enemy)\nself.moveTank(enemypos)\nself.shoot()"
 
 
 class Tank:
@@ -99,15 +102,17 @@ class Tank:
         conn.close()
 
         cat = namedtuple('cat', 'moveValue')
-        self.caterpillar = cat(result[0])
+        #self.caterpillar = cat(result[0])
+        self.caterpillar = cat(2)
 
         nav = namedtuple('nav', 'actionValue')
-        self.navSystem = nav(result[1])
+        #self.navSystem = nav(result[1])
+        self.navSystem = nav(2)
 
-        weap = namedtuple('weap', 'range attackcost attackValue')
-        self.weapon = weap(result[2], result[3], result[4])
-
+        weap = namedtuple('weap', 'range attackCost attackValue')
+        #self.weapon = weap(result[2], result[3], result[4])
+        self.weapon = weap(4, 1, 1)
 
 if __name__ == '__main__':
     Clock.schedule_interval(field.update, 1)
-    field().run()
+    field(0, 0, 0, 0).run()
