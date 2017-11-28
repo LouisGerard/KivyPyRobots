@@ -18,6 +18,7 @@
         NavigationDrawerIconButton:
             icon: 'gamepad'
             text: "Combat"
+            on_release: screen_manager.current = 'fight'
 
         NavigationDrawerIconButton:
             icon: 'comment-edit'
@@ -47,6 +48,7 @@
             transition: FadeTransition()
             Acceuil:
             Editor:
+            Field:
 
 
 <Acceuil>:
@@ -93,3 +95,8 @@
             text: root.load()
             font_name: "code.ttf"
 
+<Field>
+    name: 'fight'
+
+    FloatLayout:
+	    id: layout

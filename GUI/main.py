@@ -13,9 +13,8 @@ from kivy.uix.floatlayout import FloatLayout
 from kivymd.theming import ThemeManager
 from kivy.uix.screenmanager import ScreenManager, Screen, FadeTransition
 from kivy.core.window import WindowBase, Window
-from kivy.uix.boxlayout import BoxLayout
-from kivy.clock import Clock, mainthread
 from editor import Editor
+from fight import Field
 
 Window.fullscreen = False
 

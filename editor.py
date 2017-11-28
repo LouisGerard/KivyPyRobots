@@ -8,8 +8,6 @@ from suggestion import Suggestion
 from collections import namedtuple
 
 from kivy.core.window import WindowBase
-from kivy.uix.codeinput import CodeInput
-from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
 from kivy.clock import Clock, mainthread
 
@@ -100,5 +98,5 @@ class Editor(Screen):
 
 
 if __name__ == '__main__':
-    editor = Editor(1)
+    editor = Editor()
     editor.run()
