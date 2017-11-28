@@ -58,16 +58,23 @@ class field(App):
         return jeu.layout
 
     def update(self):
-        posTank1 = jeu.game.getPosition(0)
-        posTank2 = jeu.game.getPosition(1)
         lifeTank1 = jeu.game.getLife(0)
         lifeTank2 = jeu.game.getLife(1)
-        if (lifeTank1 <= 0 or lifeTank2 <= 0):
-            print("fin de la partie")
-            self.close()
+        posTank1 = jeu.game.getPosition(0)
+        posTank2 = jeu.game.getPosition(1)
         print("tour numéro : %d" % (jeu.cptTour,))
         print("vie tank 1 : %d" % (lifeTank1,))
         print("vie tank 2 : %d \n" % (lifeTank2,))
+        if (lifeTank1 <= 0 or lifeTank2 <= 0):
+            print("fin de la partie")
+            difLife = lifeTank2 - lifeTank1
+            if difLife < 0:
+                print("victoire de tank1")
+            elif difLife > 0:
+                print("victoire de tank2")
+            else:
+                print("égalité")
+            App.get_running_app().stop()
         field = InstructionGroup()
         i = 0
         while i < 32 * 32:
@@ -129,9 +136,9 @@ class Tank:
 
         weap = namedtuple('weap', 'range attackCost attackValue')
         #self.weapon = weap(result[2], result[3], result[4])
-        self.weapon = weap(4, 1, 1)
+        self.weapon = weap(4, 1, 5)
 
 if __name__ == '__main__':
     jeu.init(0,0,0,0)
-    Clock.schedule_interval(field.update, 1)
+    Clock.schedule_interval(field.update, 0.5)
     field().run()
