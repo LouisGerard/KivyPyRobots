@@ -222,6 +222,6 @@ class Game(object):
         #         exec (text)
         #         print (text)
 
-        #return self.run(i + 1)
+        # return self.run(i + 1)
 
         # return self.__result

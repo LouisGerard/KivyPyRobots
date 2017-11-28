@@ -23,7 +23,7 @@ widgets bigger you can just decrease inner_radius_hint.
 
 from kivy.uix.layout import Layout
 from kivy.properties import NumericProperty, ReferenceListProperty, OptionProperty, \
-                            BoundedNumericProperty, VariableListProperty, AliasProperty
+    BoundedNumericProperty, VariableListProperty, AliasProperty
 from math import sin, cos, pi, radians
 
 __all__ = ('CircularLayout')
@@ -106,10 +106,12 @@ class CircularLayout(Layout):
     '''
 
     def _get_delta_radii(self):
-        radius = min(self.width-self.padding[0]-self.padding[2], self.height-self.padding[1]-self.padding[3]) / 2.
+        radius = min(self.width - self.padding[0] - self.padding[2],
+                     self.height - self.padding[1] - self.padding[3]) / 2.
         outer_r = radius * self.outer_radius_hint
         inner_r = radius * self.inner_radius_hint
         return outer_r - inner_r
+
     delta_radii = AliasProperty(_get_delta_radii, None, bind=("radius_hint", "padding", "size"))
 
     def __init__(self, **kwargs):
@@ -141,7 +143,7 @@ class CircularLayout(Layout):
         padding_x = padding_left + padding_right
         padding_y = padding_top + padding_bottom
 
-        radius = min(self.width-padding_x, self.height-padding_y) / 2.
+        radius = min(self.width - padding_x, self.height - padding_y) / 2.
         outer_r = radius * self.outer_radius_hint
         inner_r = radius * self.inner_radius_hint
         middle_r = radius * sum(self.radius_hint) / 2.
@@ -180,9 +182,11 @@ class CircularLayout(Layout):
                 c.width = s
                 c.height = s
 
+
 if __name__ == "__main__":
     from kivy.app import App
     from kivy.uix.button import Button
+
 
     class CircLayoutApp(App):
         def build(self):
@@ -192,5 +196,6 @@ if __name__ == "__main__":
                 cly.add_widget(Button(text=str(i), font_size="30dp"))
 
             return cly
+
 
     CircLayoutApp().run()

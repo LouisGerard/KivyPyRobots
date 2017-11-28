@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from kivy.lang import Builder
-from kivy.properties import BoundedNumericProperty, ReferenceListProperty, ListProperty,BooleanProperty
+from kivy.properties import BoundedNumericProperty, ReferenceListProperty, ListProperty, BooleanProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivymd.elevationbehavior import ElevationBehavior
 from kivymd.theming import ThemableBehavior
@@ -35,11 +35,12 @@ Builder.load_string('''
 
 class MDSeparator(ThemableBehavior, BoxLayout):
     """ A separator line """
+
     def __init__(self, *args, **kwargs):
         super(MDSeparator, self).__init__(*args, **kwargs)
         self.on_orientation()
-    
-    def on_orientation(self,*args):
+
+    def on_orientation(self, *args):
         self.size_hint = (1, None) if self.orientation == 'horizontal' else (None, 1)
         if self.orientation == 'horizontal':
             self.height = dp(1)
@@ -52,7 +53,7 @@ class MDCard(ThemableBehavior, ElevationBehavior, BoxLayout):
     g = BoundedNumericProperty(1., min=0., max=1.)
     b = BoundedNumericProperty(1., min=0., max=1.)
     a = BoundedNumericProperty(0., min=0., max=1.)
-    
-    border_radius = BoundedNumericProperty(dp(3),min=0)
+
+    border_radius = BoundedNumericProperty(dp(3), min=0)
     border_color_a = BoundedNumericProperty(0, min=0., max=1.)
     background_color = ReferenceListProperty(r, g, b, a)

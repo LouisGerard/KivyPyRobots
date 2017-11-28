@@ -7,7 +7,6 @@ from kivymd.color_definitions import colors
 from kivymd.theming import ThemableBehavior
 from kivy.uix.progressbar import ProgressBar
 
-
 Builder.load_string('''
 <MDProgressBar>:
     canvas:
@@ -35,15 +34,16 @@ Builder.load_string('''
 class MDProgressBar(ThemableBehavior, ProgressBar):
     reversed = BooleanProperty(False)
     ''' Reverse the direction the progressbar moves. '''
-    
+
     orientation = OptionProperty('horizontal', options=['horizontal', 'vertical'])
     ''' Orientation of progressbar'''
-            
-    
+
+
 if __name__ == '__main__':
     from kivy.app import App
     from kivymd.theming import ThemeManager
-    
+
+
     class ProgressBarApp(App):
         theme_cls = ThemeManager()
 
@@ -74,6 +74,6 @@ BoxLayout:
             value: slider.value
         
 """)
-            
+
 
     ProgressBarApp().run()

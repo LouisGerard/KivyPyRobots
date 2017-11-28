@@ -95,7 +95,7 @@ class MDTabBar(ThemableBehavior, BackgroundColorBehavior, BoxLayout):
 
 class MDTabHeader(MDFlatButton):
     """ Internal widget for headers based on MDFlatButton"""
-    
+
     width = BoundedNumericProperty(dp(None), min=dp(72), max=dp(264), errorhandler=lambda x: dp(72))
     tab = ObjectProperty(None)
     panel = ObjectProperty(None)
@@ -106,19 +106,19 @@ class MDTab(Screen):
         that defines the content that goes in the tab header.
     """
     __events__ = ('on_tab_touch_down', 'on_tab_touch_move', 'on_tab_touch_up', 'on_tab_press', 'on_tab_release')
-    
+
     # Tab header text
     text = StringProperty("")
-    
+
     # Tab header icon
     icon = StringProperty("circle")
-    
+
     # Tab dropdown menu items
     menu_items = ListProperty()
-    
+
     # Tab dropdown menu (if you want to customize it)
     menu = ObjectProperty(None)
-    
+
     def __init__(self, **kwargs):
         super(MDTab, self).__init__(**kwargs)
         self.index = 0
@@ -131,13 +131,13 @@ class MDTab(Screen):
 
     def on_leave(self, *args):
         self.parent_widget.ids.tab_manager.transition.direction = self.parent_widget.prev_dir
-        
+
     def on_tab_touch_down(self, *args):
         pass
-    
+
     def on_tab_touch_move(self, *args):
         pass
-    
+
     def on_tab_touch_up(self, *args):
         pass
 
@@ -151,13 +151,13 @@ class MDTab(Screen):
                 par.ids.tab_manager.transition.direction = "left"
             par.ids.tab_manager.current = self.name
             par.previous_tab = self
-    
+
     def on_tab_release(self, *args):
         pass
-    
+
     def __repr__(self):
         return "<MDTab name='{}', text='{}'>".format(self.name, self.text)
-    
+
 
 class MDTabbedPanel(ThemableBehavior, BackgroundColorBehavior, BoxLayout):
     """ A tab panel that is implemented by delegating all tabs
@@ -165,48 +165,48 @@ class MDTabbedPanel(ThemableBehavior, BackgroundColorBehavior, BoxLayout):
     """
     # If tabs should fill space
     tab_width_mode = OptionProperty('stacked', options=['stacked', 'fixed'])
-    
+
     # Where the tabs go
     tab_orientation = OptionProperty('top', options=['top'])  # ,'left','bottom','right'])
-    
+
     # How tabs are displayed
     tab_display_mode = OptionProperty('text', options=['text', 'icons'])  # ,'both'])
     _tab_display_height = DictProperty({'text': dp(46), 'icons': dp(46), 'both': dp(72)})
-    
+
     # Tab background color (leave empty for theme color)
     tab_color = ListProperty([])
-    
+
     # Tab text color in normal state (leave empty for theme color)
     tab_text_color = ListProperty([])
-    
+
     # Tab text color in active state (leave empty for theme color)
     tab_text_color_active = ListProperty([])
-    
+
     # Tab indicator color  (leave empty for theme color)
     tab_indicator_color = ListProperty([])
-    
+
     # Tab bar bottom border color (leave empty for theme color)
     tab_border_color = ListProperty([])
-        
+
     # List of all the tabs so you can dynamically change them
     tabs = ListProperty([])
-    
+
     # Current tab name
     current = StringProperty(None)
-    
+
     def __init__(self, **kwargs):
         super(MDTabbedPanel, self).__init__(**kwargs)
         self.previous_tab = None
         self.prev_dir = None
         self.index = 0
         self._refresh_tabs()
-        
+
     def on_tab_width_mode(self, *args):
         self._refresh_tabs()
-    
+
     def on_tab_display_mode(self, *args):
         self._refresh_tabs()
-    
+
     def _refresh_tabs(self):
         """ Refresh all tabs """
         # if fixed width, use a box layout
@@ -221,7 +221,7 @@ class MDTabbedPanel(ThemableBehavior, BackgroundColorBehavior, BoxLayout):
                                      height=tab_bar.height,
                                      )
             tab_bar.add_widget(tab_header)
-        
+
     def add_widget(self, widget, **kwargs):
         """ Add tabs to the screen or the layout.
         :param widget: The widget to add.
@@ -237,7 +237,7 @@ class MDTabbedPanel(ThemableBehavior, BackgroundColorBehavior, BoxLayout):
             self._refresh_tabs()
         else:
             super(MDTabbedPanel, self).add_widget(widget)
-        
+
     def remove_widget(self, widget):
         """ Remove tabs from the screen or the layout.
         :param widget: The widget to remove.
@@ -249,11 +249,12 @@ class MDTabbedPanel(ThemableBehavior, BackgroundColorBehavior, BoxLayout):
         else:
             super(MDTabbedPanel, self).remove_widget(widget)
 
-        
+
 if __name__ == '__main__':
     from kivy.app import App
     from kivymd.theming import ThemeManager
-    
+
+
     class TabsApp(App):
         theme_cls = ThemeManager()
 
@@ -298,6 +299,6 @@ BoxLayout:
      
         
 """)
-            
+
 
     TabsApp().run()

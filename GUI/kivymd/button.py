@@ -189,7 +189,7 @@ class MDFlatButton(ThemableBehavior, RectangularRippleBehavior,
             return False
         else:
             self.fade_bg = Animation(duration=.2, _current_button_color=get_color_from_hex(
-                                     colors[self.theme_cls.theme_style]['FlatButtonDown']))
+                colors[self.theme_cls.theme_style]['FlatButtonDown']))
             self.fade_bg.start(self)
             return super(MDFlatButton, self).on_touch_down(touch)
 

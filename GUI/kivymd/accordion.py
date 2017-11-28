@@ -26,11 +26,11 @@ class MDAccordionItem(ThemableBehavior, AccordionItem):
 
     title_color = ListProperty(None, allownone=True)
     ''' Color for title text and icon if `title_theme_color` is Custom '''
-    
+
     background_color = ListProperty(None, allownone=True)
     ''' Color for the background of the accordian item title in rgba format. 
     '''
-    
+
     divider_color = ListProperty(None, allownone=True)
     ''' Color for dividers between different titles in rgba format 
     To remove the divider set a color with an alpha of 0. 
@@ -40,26 +40,26 @@ class MDAccordionItem(ThemableBehavior, AccordionItem):
     ''' Color for the indicator on the side of the active item in rgba format 
     To remove the indicator set a color with an alpha of 0. 
     '''
-    
+
     font_style = OptionProperty(
         'Subhead', options=['Body1', 'Body2', 'Caption', 'Subhead', 'Title',
-                          'Headline', 'Display1', 'Display2', 'Display3',
-                          'Display4', 'Button', 'Icon'])
+                            'Headline', 'Display1', 'Display2', 'Display3',
+                            'Display4', 'Button', 'Icon'])
     ''' Font style to use for the title text '''
 
     title_template = StringProperty('MDAccordionItemTitle')
     ''' Template to use for the title '''
-    
-    icon = StringProperty(None,allownone=True)
+
+    icon = StringProperty(None, allownone=True)
     ''' Icon name to use when this item is expanded  '''
-    
+
     icon_expanded = StringProperty('chevron-up')
     ''' Icon name to use when this item is expanded  '''
-    
+
     icon_collapsed = StringProperty('chevron-down')
     ''' Icon name to use when this item is collapsed  '''
- 
- 
+
+
 Builder.load_string('''
 #:import MDLabel kivymd.label.MDLabel
 #:import md_icons kivymd.icon_definitions.md_icons
@@ -161,12 +161,13 @@ Builder.load_string('''
         canvas.after:
             PopMatrix
     
-''')           
-    
+''')
+
 if __name__ == '__main__':
     from kivy.app import App
     from kivymd.theming import ThemeManager
-    
+
+
     class AccordionApp(App):
         theme_cls = ThemeManager()
 
@@ -249,6 +250,6 @@ BoxLayout:
                 text:'Content 3'
                 theme_text_color:'Primary'
 """)
-            
+
 
     AccordionApp().run()

@@ -60,6 +60,7 @@ from kivymd.theming import ThemableBehavior
 from math import atan, pi, radians, sin, cos
 import sys
 import datetime
+
 if sys.version_info[0] > 2:
     def xrange(first=None, second=None, third=None):
         if third:
@@ -605,6 +606,7 @@ class CircularTimePicker(BoxLayout, ThemableBehavior):
                                        hours=h,
                                        minutes=m,
                                        primary_dark=primary_dark)
+
     time_text = AliasProperty(_get_time_text, None, bind=("hours", "minutes", "time_format", "picker"))
 
     def _get_ampm_text(self, *args):
@@ -618,10 +620,10 @@ class CircularTimePicker(BoxLayout, ThemableBehavior):
     def __init__(self, **kw):
         super(CircularTimePicker, self).__init__(**kw)
         self.selector_color = self.theme_cls.primary_color[0], self.theme_cls.primary_color[1], \
-            self.theme_cls.primary_color[2]
+                              self.theme_cls.primary_color[2]
         self.color = self.theme_cls.text_color
         self.primary_dark = self.theme_cls.primary_dark[0] / 2, self.theme_cls.primary_dark[1] / 2, \
-            self.theme_cls.primary_dark[2] / 2
+                            self.theme_cls.primary_dark[2] / 2
         self.on_ampm()
         if self.hours >= 12:
             self._am = False

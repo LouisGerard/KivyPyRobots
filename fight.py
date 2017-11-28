@@ -17,19 +17,22 @@ kivy.require('1.9.0')
 # Set window size or not with your screen resolution
 
 Window.fullscreen = False
+
+
 class jeu(object):
     cptTour = 0
     layout = FloatLayout()
     caseWidth = Window.width / 32
     caseHeight = Window.height / 32
     game = 0
+
     @staticmethod
     def init(t1, t2, ia1, ia2):
         jeu.game = Game.Game(Tank(t1), Tank(t2), IA(ia1), IA(ia2))
 
     @staticmethod
     def incrCptTour():
-        jeu.cptTour+=1
+        jeu.cptTour += 1
 
 
 class field(App):
@@ -107,7 +110,7 @@ class IA:
         result = c.fetchone()
         conn.close()
 
-        #self.text = result[0]
+        # self.text = result[0]
         self.text = "enemy = self.getEnemyTankId()\nenemypos = self.getPosition(enemy)\nself.moveTank(enemypos)\nself.shoot()"
 
 
@@ -127,18 +130,19 @@ class Tank:
         conn.close()
 
         cat = namedtuple('cat', 'moveValue')
-        #self.caterpillar = cat(result[0])
+        # self.caterpillar = cat(result[0])
         self.caterpillar = cat(2)
 
         nav = namedtuple('nav', 'actionValue')
-        #self.navSystem = nav(result[1])
+        # self.navSystem = nav(result[1])
         self.navSystem = nav(2)
 
         weap = namedtuple('weap', 'range attackCost attackValue')
-        #self.weapon = weap(result[2], result[3], result[4])
+        # self.weapon = weap(result[2], result[3], result[4])
         self.weapon = weap(4, 1, 5)
 
+
 if __name__ == '__main__':
-    jeu.init(0,0,0,0)
+    jeu.init(0, 0, 0, 0)
     Clock.schedule_interval(field.update, 0.5)
     field().run()

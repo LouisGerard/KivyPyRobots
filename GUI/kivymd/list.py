@@ -296,7 +296,7 @@ class BaseListItem(ThemableBehavior, RectangularRippleBehavior,
     :attr:`text` is a :class:`~kivy.properties.StringProperty` and defaults
     to "".
     '''
-    
+
     text_color = ListProperty(None)
     ''' Text color used if theme_text_color is set to 'Custom' '''
 
@@ -304,8 +304,8 @@ class BaseListItem(ThemableBehavior, RectangularRippleBehavior,
         'Subhead', options=['Body1', 'Body2', 'Caption', 'Subhead', 'Title',
                             'Headline', 'Display1', 'Display2', 'Display3',
                             'Display4', 'Button', 'Icon'])
-    
-    theme_text_color = StringProperty('Primary',allownone=True)
+
+    theme_text_color = StringProperty('Primary', allownone=True)
     ''' Theme text color for primary text '''
 
     secondary_text = StringProperty()
@@ -318,14 +318,14 @@ class BaseListItem(ThemableBehavior, RectangularRippleBehavior,
     :attr:`secondary_text` is a :class:`~kivy.properties.StringProperty` and
     defaults to "".
     '''
-    
+
     secondary_text_color = ListProperty(None)
     ''' Text color used for secondary text if secondary_theme_text_color 
     is set to 'Custom' '''
-    
-    secondary_theme_text_color = StringProperty('Secondary',allownone=True)
+
+    secondary_theme_text_color = StringProperty('Secondary', allownone=True)
     ''' Theme text color for secondary primary text '''
-    
+
     secondary_font_style = OptionProperty(
         'Body1', options=['Body1', 'Body2', 'Caption', 'Subhead', 'Title',
                           'Headline', 'Display1', 'Display2', 'Display3',
@@ -388,7 +388,7 @@ class ContainerSupport:
             self.ids['_right_container'].add_widget(widget)
             self._touchable_widgets.append(widget)
         else:
-            return super(BaseListItem, self).add_widget(widget,index)
+            return super(BaseListItem, self).add_widget(widget, index)
 
     def remove_widget(self, widget):
         super(BaseListItem, self).remove_widget(widget)

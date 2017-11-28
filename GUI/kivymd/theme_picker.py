@@ -400,6 +400,7 @@ if __name__ == "__main__":
     from kivy.app import App
     from kivymd.theming import ThemeManager
 
+
     class ThemePickerApp(App):
         theme_cls = ThemeManager()
 
@@ -418,5 +419,6 @@ FloatLayout:
         opposite_colors: True
 """)
             return main_widget
+
 
     ThemePickerApp().run()
