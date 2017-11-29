@@ -19,8 +19,8 @@ kivy.require('1.9.0')
 
 class Jeu(object):
     cptTour = 0
-    caseWidth = Window.width/ 32
-    caseHeight = (Window.height - 75)/ 32
+    caseWidth = Window.width /home/louis/Téléchargements/testgame.py/ 32
+    caseHeight = (Window.height - 75) / 32
     game = None
 
     @staticmethod
