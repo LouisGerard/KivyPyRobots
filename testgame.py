@@ -13,7 +13,7 @@ class TestGame(unittest.TestCase):
         conn = sqlite3.connect('Date/kivy.db')
 
         c = conn.cursor()
-        c.execute('INSERT INTO IA VALUES (2, 1, "aze"')
+        c.execute('INSERT INTO IA VALUES (2, 1, "aze")')
         codeToSave = "Code = \"Un code quelconque\""
 
         editor = Editor(2)
@@ -33,7 +33,7 @@ class TestGame(unittest.TestCase):
 def test_load(self):
     conn = sqlite3.connect('Date/kivy.db')
     c = conn.cursor()
-    c.execute('INSERT INTO IA VALUES (2, 1, "test"')
+    c.execute('INSERT INTO IA VALUES (2, 1, "test")')
     codeToMatchWithDB = "test"
 
     editor = Editor(2)
