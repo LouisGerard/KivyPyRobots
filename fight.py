@@ -19,7 +19,7 @@ kivy.require('1.9.0')
 
 class Jeu(object):
     cptTour = 0
-    caseWidth = Window.width /home/louis/Téléchargements/testgame.py/ 32
+    caseWidth = Window.width / 32
     caseHeight = (Window.height - 75) / 32
     game = None
 
@@ -36,7 +36,7 @@ class Field(Screen):
 
     @mainthread
     def on_enter(self):
-        Jeu.init(0, 0, 0, 0)
+        Jeu.init(0, 0, 1, 1)
         field = InstructionGroup()
         field.add(Color(0.9294, 0.7882, 0.6863))
 
@@ -99,11 +99,11 @@ class IA:
         result = c.fetchone()
         conn.close()
 
-        # todo self.text = result[0]
-        self.text = "enemy = self.getEnemyTankId()\n" \
-                    "enemypos = self.getPosition(enemy)\n" \
-                    "self.moveTank(enemypos)\n" \
-                    "self.shoot() "
+        self.text = result[0]
+        # self.text = "enemy = self.getEnemyTankId()\n" \
+        #             "enemypos = self.getPosition(enemy)\n" \
+        #             "self.moveTank(enemypos)\n" \
+        #             "self.shoot() "
 
 
 class Tank:

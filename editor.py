@@ -91,7 +91,7 @@ class Editor(Screen):
         self.focus()
 
     def focus(self):
-        Clock.schedule_once(self.__focus__)  # Kivy Bug with textinput focus
+        Clock.schedule_once(self.__focus__, .5)  # Kivy Bug with textinput focus
 
     def __focus__(self, dt):
         self.ids.code_input.focus = True
